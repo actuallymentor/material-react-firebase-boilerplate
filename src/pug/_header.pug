@@ -41,12 +41,22 @@ head
 	style!=css
 	//- Load the main css stylesheet if there is no js support
 	noscript: link( rel="stylesheet" type="text/css" href=site.system.url + 'assets/css/styles.css' )
-	//- Load the main css stylesheet if there is js support
-	script( type="application/javascript" ).
-		let link = document.createElement( "link" )
-		link.href = "#{ site.system.url + 'assets/css/styles.css' }"
-		link.type = "text/css"
-		link.rel = "stylesheet"
-		document.getElementsByTagName( "head" )[0].appendChild( link )
+
 	//- Get the webpack script
-	script( src=site.system.url + `assets/js/app-${site.system.timestamp}.js` , async)
+	script( src=site.system.url + `assets/js/app-${site.system.timestamp}.js`, async)
+
+	//- materialize scripts
+	script( src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js", async )
+
+
+	//- Load the main css stylesheet and fonts if there is js support
+	script( type="application/javascript" ).
+		const loadAsync = async ( url, mime ) => {
+			let link = document.createElement( "link" )
+			link.href = url
+			link.type = mime || ""
+			link.rel = "stylesheet"
+			return document.getElementsByTagName( "head" )[0].appendChild( link )
+		}
+		loadAsync( "#{ site.system.url + 'assets/css/styles.css' }", "text/css" )
+		loadAsync( "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700", "" )

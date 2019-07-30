@@ -34,6 +34,7 @@ const inline = path => new Promise( ( resolve, reject ) => {
 		postcss( [ autoprefixer, cssnano ] )
 		.process( result.css, { from: path, to: path + 'dummy' } )
 		.then( result => resolve( result.css ) )
+		.catch( err => console.log( err ) )
 	 } )
 	
 } )

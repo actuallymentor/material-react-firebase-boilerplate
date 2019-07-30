@@ -19,14 +19,6 @@ const site = require( __dirname + '/modules/config' )
 const publishpug = require( __dirname + '/modules/publish-pug' )
 const publishassets = require( __dirname + '/modules/publish-assets' )
 
-// Get environment variables
-require('dotenv').config( `${__dirname}/.env` )
-// Remap process env
-const stringify_env = f => {
-  let environment = {}
-  Object.keys( process.env ).map( ( key, index ) => { return environment[ key ] = JSON.stringify( process.env[ key ] ) } )
-  return environment
-}
 
 // ///////////////////////////////
 // Plugins
@@ -114,7 +106,7 @@ module.exports = ( ) => {
         ]
       },
       devtool: process.env.NODE_ENV == 'production' ?  'cheap-module-source-map' : 'eval',
-      plugins: process.env.NODE_ENV == 'production' ? [ new webpack.DefinePlugin( envconfig ) ] : [ new BrowserSyncPlugin( bsconfig, bsyncplugconfig ) ]
+      plugins: [ process.env.NODE_ENV == 'production' ? new webpack.DefinePlugin( envconfig ) : new BrowserSyncPlugin( bsconfig, bsyncplugconfig ) ]
     }
   } ).catch( console.log.bind( console ) )
 }
