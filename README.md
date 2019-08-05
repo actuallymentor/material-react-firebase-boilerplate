@@ -1,6 +1,4 @@
-# Webpack 4, frontend only
-
-<img height="50px" style="float: left;" alt="webpack" src="http://i.imgur.com/xz36f45.png" /> <img height="50px" style="float: left;" alt="browsersync" src="http://i.imgur.com/L5peje9.png" /> <img height="50px" style="float: left;" alt="pug" src="http://i.imgur.com/x4sHEg4.png" /> <img height="50px" style="float: left;" alt="sass" src="http://i.imgur.com/O9ikKdz.png" />
+# React + Firebase + Material = 🎉
 
 This repo sets up a development environment where you can happily edit your .pug, .scss and .js files while your development server automatically updates when you save.
 
@@ -8,16 +6,20 @@ The main optimisations are a high page speed score and built-in SEO structure. T
 
 ![Page speed]( ./src/assets/page-speed.png )
 
-[Live Demo of a webpage built with this module]( https://actuallymentor.github.io/webpack-frontend-only/ )
-
 Workflow:
 
 1. Make html structure using [ pug ]( https://github.com/pugjs )
 2. Write styling in [ Sass ]( https://github.com/sass/sass )
     1. The `essential-above-the-fold.scss` is embedded into the header as a minified `<style>` element
     1. The `styles.scss` is loaded with javascript
-3. Write js in ES2015 compiled by [ Webpack ]( https://github.com/webpack )
+3. Write modern js compiled by [ Webpack ]( https://github.com/webpack )
 4. Have an auto-refreshing browser preview using [ Browsersync ]( https://github.com/BrowserSync/browser-sync )
+
+React workflow:
+
+1. React is hooked up with Redux, redux persist and react router
+2. The firebase connector is in the `modules` folder
+
 
 ## Getting started
 
