@@ -36,23 +36,20 @@ class LoginRegister extends Component {
 		const { name, email, password } = valuesFromEvent( event )
 		const { dispatch } = this.props
 
-		console.log( name, email, password )
-
 		// No browser submit
 		event.preventDefault()
 
 		// Do login/register
 		await action == 'register' ? dispatch( registerUser( name, email, password ) ) : dispatch( loginUser( email, password ) )
+
 	}
 
 
 	render( ) {
 
 		const { action } = this.state
-		const { user } = this.props
 
 		return <div className="card">
-			<p>Logged in as { user && user.email }</p>
 			<form onSubmit={ this.handleSumbit } >
 				<h2>{ action }</h2>
 				{ action == 'register' && <input name="name" type='text' placeholder="name" /> }

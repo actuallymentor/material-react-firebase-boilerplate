@@ -14,24 +14,8 @@ const reducers = combineReducers( {
 	user: userReducer
 } )
 
-// Reducer 'middleware' that wraps around the rest of the reducers
-const metaReducer = ( state, action ) => {
 
-	switch( action.type ) {
-
-		// After logging in ( or getting previous session )
-		case "GETUSER_FULFILLED":
-		case "REGISTERUSER_FULFILLED":
-		case "LOGINUSER_FULFILLED":
-
-		break
-
-	}
-
-	return reducers( state, action )
-}
-
-const persistedReducer = persistReducer( { key: 'root', storage }, metaReducer )
+const persistedReducer = persistReducer( { key: 'root', storage }, reducers )
 
 // Middleware
 const middleware = applyMiddleware( logger, promise )

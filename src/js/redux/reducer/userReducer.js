@@ -1,4 +1,4 @@
-export default ( state = null, action ) => {
+const userReducer = ( state = null, action ) => {
 
 	switch( action.type ) {
 
@@ -8,7 +8,7 @@ export default ( state = null, action ) => {
 		case "LOGINUSER_FULFILLED":
 			// Payload contains the result of the frequest to the server
 			const { displayName, email } = action.payload
-			return { ...state, name: displayName, email }
+			return { ...state, name: displayName, email: email }
 		break
 
 	
@@ -23,3 +23,4 @@ export default ( state = null, action ) => {
 			return state
 	}
 }
+export default userReducer
