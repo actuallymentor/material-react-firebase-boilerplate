@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 // Visual
-import LoginRegister from './stateful/login-register'
+import LoginRegister from './components/stateful/login-register'
 
 // Data
 import { store, persistor } from './redux/store'

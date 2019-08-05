@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom'
 import { Component } from '../stateless/generic'
 
 // Data
-import app from '../modules/firebase'
-import { valuesFromEvent } from '../modules/helpers'
+import { connect } from 'react-redux'
+import { valuesFromEvent } from '../../modules/helpers'
 
-export default class LoginRegister extends Component {
+// Data actions
+import { getUser, registerUser, loginUser, logoutUser } from '../../redux/action/userActions'
+
+class LoginRegister extends Component {
 
 	constructor( props ) {
 
@@ -26,22 +29,30 @@ export default class LoginRegister extends Component {
 		return this.updateState( { action: action == 'login' ? 'register' : 'login' } )
 	}
 
-	async handleSumbit( e ) {
-		e.preventDefault()
+	async handleSumbit( event ) {
+
+		// Destructure data
 		const { action } = this.state
-		const { name, email, password } = valuesFromEvent( e )
-		await action == 'register' ? app.registerUser( name, email, password ) : app.loginUser( email, password )
+		const { name, email, password } = valuesFromEvent( event )
+		const { dispatch } = this.props
+
+		console.log( name, email, password )
+
+		// No browser submit
+		event.preventDefault()
+
+		// Do login/register
+		await action == 'register' ? dispatch( registerUser( name, email, password ) ) : dispatch( loginUser( email, password ) )
 	}
 
 
 	render( ) {
 
 		const { action } = this.state
-
-		setInterval( f => console.log( app.user.email ), 1000 )
+		const { user } = this.props
 
 		return <div className="card">
-			<p>Logged in as { app.user && app.user.email }</p>
+			<p>Logged in as { user && user.email }</p>
 			<form onSubmit={ this.handleSumbit } >
 				<h2>{ action }</h2>
 				{ action == 'register' && <input name="name" type='text' placeholder="name" /> }
@@ -54,3 +65,7 @@ export default class LoginRegister extends Component {
 	}
 
 }
+
+export default connect( store => ( {
+	user: store.user
+} ) )( LoginRegister )
