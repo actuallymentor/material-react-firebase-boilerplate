@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
 // Routing, using HashRouter instead of BrowserRouter tomake sure no server-side config is needed
-import {  Router } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import { Routes, History } from './routes'
 
 class App extends React.Component {

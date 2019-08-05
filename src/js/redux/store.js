@@ -24,3 +24,4 @@ const middleware = applyMiddleware( logger, promise )
 // Export store and persistor
 export const store = createStore( persistedReducer, middleware )
 export const persistor = persistStore( store )
+
