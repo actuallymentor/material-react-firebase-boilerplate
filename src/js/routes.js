@@ -13,26 +13,6 @@ import { connect } from 'react-redux'
 import LoginRegister from './components/stateful/login-register'
 import NavBar from './components/stateless/navbar'
 
-
-/////////////////
-// Routing rules
-////////////////
-
-// // Store listeners for route
-// store.subscribe( f => {
-
-// 	const { user } = store.getState()
-// 	const { location: { pathname: path }, push: link } = History
-
-// 	console.log( path )
-
-// 	// User is logged in, but at login page
-// 	if( [ '/', '/login' ].includes( path ) && user ) link( '/profile' )
-
-// 	// User is not logged in
-// 	if( !user ) link( '/login' )
-// } )
-
 class RouteMan extends React.Component {
 
 	// When the state and/or history update
@@ -45,7 +25,7 @@ class RouteMan extends React.Component {
 		if( [ '/', '/login' ].includes( path ) && user ) push( '/profile' )
 
 		// User is not logged in
-		if( !user ) push( '/login' )
+		if( path != '/login' && !user ) push( '/login' )
 	}
 
 	render( ) {
@@ -59,7 +39,7 @@ class RouteMan extends React.Component {
 				<Route exact path='/login' component={ LoginRegister } />
 				<Route exact path='/profile' component={ f => <h1>You are logged in</h1> } />
 
-				<Route component={ f => <h1>The router is having a bad day</h1> } />
+				<Route component={ f => <h1>Router default</h1> } />
 			</Switch>
 		</div>
 	}
