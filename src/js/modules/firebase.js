@@ -11,10 +11,6 @@ class App {
 		this.fb = firebase.initializeApp( config )
 		this.db = this.fb.firestore()
 
-		// Set up listeners
-		this.listeners = {}
-		this.listenUser()
-
 		// Default values
 		this.user = undefined
 	}
@@ -23,8 +19,19 @@ class App {
 	// ///////////////////////////////
 	// User management
 	// ///////////////////////////////
-	listenUser() {
-		setInterval( f => this.fb.auth().onAuthStateChanged( user => this.user = user ), 1000 )
+
+	getUser() {
+		return new Promise( ( res, rej ) => {
+			if( this.user ) return res( this.user )
+			return this.fb.auth().onAuthStateChanged( user => {
+				if( user ) {
+					this.user = user
+					return res( user )
+				} else {
+					return rej( 'No logged in user' )
+				}
+			} )
+		} )
 	}
 
 	async registerUser( username, email, password ){
@@ -48,30 +55,3 @@ class App {
 }
 
 export default new App()
-
-// // ///////////////////////////////
-// // Listener management
-// // ///////////////////////////////
-// resetListenerByName( name, all ) {
-// 	if( name ) {
-// 		// Run unsubscribe if listener exists
-// 		if( this.listeners[ name ] ) this.listeners[ name ]()
-// 		// Check for matching listeners based on partial match
-// 		for( let listenername in this.listeners ) {
-// 			// if partial match, unsub
-// 			if( listenername.includes( name ) ) this.listeners[ listenername ]()
-// 		}
-// 	}
-// 	if( all ) {
-// 		// Unsubscribe for each key in listener object
-// 		for( let listenername in this.listeners ) this.listeners[ listenername ]()
-// 		// Reset object
-// 		this.listeners = {}
-// 	}
-// }
-// addListener( name, unsubscribe ) {
-// 	// If listener exists, unsubscribe
-// 	if( this.listeners[ name ] ) this.listeners[ name ]()
-// 	// Register listener
-// 	this.listeners[ name ] = unsubscribe
-// }

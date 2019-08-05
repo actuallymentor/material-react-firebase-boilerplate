@@ -5,15 +5,25 @@ import ReactDOM from 'react-dom'
 import LoginRegister from './stateful/login-register'
 
 // Data
-import { user } from './modules/firebase'
+import { store, persistor } from './redux/store'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
 
 class App extends React.Component {
 
 	// Render the main application element
 	render( ) {
-		return <div id="app">
-			<LoginRegister />
-		</div>
+		return (
+
+			<Provider store={ store } >
+				<PersistGate loading={null} persistor={persistor}>
+					<div id="app">
+						<LoginRegister />
+					</div>
+				</PersistGate>
+			</Provider>
+
+		)
 	}
 }
 
