@@ -10,6 +10,7 @@ import { store } from './redux/store'
 
 // Visual
 import LoginRegister from './components/stateful/login-register'
+import NavBar from './components/stateless/navbar'
 
 
 /////////////////
@@ -32,6 +33,7 @@ store.subscribe( f => {
 export const Routes = ( ) => {
 
 	return <div id="app">
+		<NavBar />
 		<Switch>
 			<Route exact path='/'>
 					<Redirect push to='/login' />
