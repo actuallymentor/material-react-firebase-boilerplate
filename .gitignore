@@ -1,10 +1,11 @@
-firebase.js
+/firebase.js
 docs/
+public
 # Logs
 logs
 *.log
 npm-debug.log*
-public
+
 
 # Runtime data
 pids
