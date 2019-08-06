@@ -1,4 +1,5 @@
 import app from '../../modules/firebase'
+import { persistor } from '../store'
 
 export const getUser = f => ( {
 	type: 'GETUSER',
@@ -17,5 +18,5 @@ export const loginUser = ( email, password ) => ( {
 
 export const logoutUser = f => ( {
 	type: 'LOGOUTUSER',
-	payload: app.logoutUser()
+	payload: app.logoutUser().finally( f => persistor.purge() )
 } )

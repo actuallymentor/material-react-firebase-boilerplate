@@ -16,8 +16,21 @@ const reducers = combineReducers( {
 	loadingMessage: loadingReducer
 } )
 
+// Root reducer
+const metaReducer = ( state, action ) => {
 
-const persistedReducer = persistReducer( { key: 'root', storage }, reducers )
+	switch( action.type ) {
+		
+		case "LOGOUTUSER_FULFILLED":
+			state = undefined
+		break
+
+	}
+
+	return reducers( state, action )
+}
+
+const persistedReducer = persistReducer( { key: 'root', storage }, metaReducer )
 
 // Middleware
 const middleware = applyMiddleware( logger, promise )
