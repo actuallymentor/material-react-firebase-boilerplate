@@ -9,4 +9,4 @@ export const valuesFromEvent = event => {
 }
 
 // Placeholder
-export const other = true
+export const catcher = true

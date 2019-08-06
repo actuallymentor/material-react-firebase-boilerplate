@@ -7,7 +7,7 @@ const userReducer = ( state = null, action ) => {
 		case "REGISTERUSER_FULFILLED":
 		case "LOGINUSER_FULFILLED":
 			// Payload contains the result of the frequest to the server
-			const { displayName, email } = action.payload
+			const { displayName, email } = { ...action.payload }
 			return { ...state, name: displayName, email: email }
 		break
 

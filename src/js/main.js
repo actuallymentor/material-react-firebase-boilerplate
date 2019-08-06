@@ -10,6 +10,9 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { Router } from 'react-router-dom'
 import { Routes, History } from './routes'
 
+// First time data loading
+import { getUser } from './redux/action/userActions'
+
 class App extends React.Component {
 
 	// Render the main application element

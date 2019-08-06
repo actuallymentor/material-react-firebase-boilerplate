@@ -18,4 +18,7 @@ export class Component extends React.Component {
 }
 
 // Placeholder
-export const other = true
+export const Loading = ( { message } ) => <div id="loading">
+	<div className="lds-dual-ring"></div>
+	<div id="message">{ message || 'Loading' }</div>
+</div>

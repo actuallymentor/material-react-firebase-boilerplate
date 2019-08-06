@@ -12,15 +12,17 @@ import { connect } from 'react-redux'
 // Visual
 import LoginRegister from './components/stateful/login-register'
 import NavBar from './components/stateless/navbar'
+import { Loading } from './components/stateless/generic'
 
 class RouteMan extends React.Component {
+
+
 
 	///////////////////////////////////////////////////
 	// Redirect rules
 	// Triggered when the state and/or history update
 	///////////////////////////////////////////////////
-	componentDidUpdate( ) {
-
+	checkRedirects() {
 		// Get user status, current path and push function
 		const { user, history: { push }, location: { pathname: path } } = this.props
 
@@ -31,12 +33,25 @@ class RouteMan extends React.Component {
 		if( path != '/login' && !user ) push( '/login' )
 	}
 
+	componentWillMount() {
+		this.checkRedirects()
+	}
+
+	componentDidUpdate( ) {
+		this.checkRedirects()
+	}
+
 	render( ) {
+
+		const { loadingMessage } = this.props
 
 		return <div id="app">
 
 			{ /* Menu is always shown, regardless of route */ }
 			<NavBar />
+
+			{ /* Show loading spinner on top if loader is on */ }
+			{ loadingMessage && <Loading message={ loadingMessage } /> }
 
 			{ /* These are the routes configured in the app */ }
 			<Switch>
@@ -55,7 +70,8 @@ class RouteMan extends React.Component {
 
 // To give the Routeman access to redux and the routing history etc we connect it to both
 export const Routes = withRouter( connect( store => ( {
-	user: store.user ? true : false
+	user: store.user ? true : false,
+	loadingMessage: store.loadingMessage
 } ) )( RouteMan ) )
 
 // Create and export history object

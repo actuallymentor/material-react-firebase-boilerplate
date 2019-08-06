@@ -8,6 +8,7 @@ import { valuesFromEvent } from '../../modules/helpers'
 
 // Data actions
 import { getUser, registerUser, loginUser, logoutUser } from '../../redux/action/userActions'
+import setLoading from '../../redux/action/loadingActions'
 
 class LoginRegister extends Component {
 
@@ -39,8 +40,14 @@ class LoginRegister extends Component {
 		// No browser submit
 		event.preventDefault()
 
+		// Loading screen
+		await dispatch( setLoading( action == 'register' ? 'Registering...' : 'Logging in...' ) )
+
 		// Do login/register
-		await action == 'register' ? dispatch( registerUser( name, email, password ) ) : dispatch( loginUser( email, password ) )
+		await ( action == 'register' ? dispatch( registerUser( name, email, password ) ) : dispatch( loginUser( email, password ) ) ).catch( err => alert( err.message ) )
+
+		// Close loading screen
+		await dispatch( setLoading( false ) )
 
 	}
 
