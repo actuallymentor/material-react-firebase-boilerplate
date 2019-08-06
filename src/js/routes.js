@@ -22,23 +22,20 @@ class RouteMan extends React.Component {
 	// Redirect rules
 	// Triggered when the state and/or history update
 	///////////////////////////////////////////////////
-	checkRedirects() {
+
+	componentWillReceiveProps( nextProps ) {
+		// Redux
+		const { dispatch } = nextProps
+
+
 		// Get user status, current path and push function
-		const { user, history: { push }, location: { pathname: path } } = this.props
+		const { user, history: { push }, location: { pathname: path } } = nextProps
 
 		// User is logged in, but at login page
 		if( [ '/', '/login' ].includes( path ) && user ) push( '/profile' )
 
 		// User is not logged in
 		if( path != '/login' && !user ) push( '/login' )
-	}
-
-	componentWillMount() {
-		this.checkRedirects()
-	}
-
-	componentDidUpdate( ) {
-		this.checkRedirects()
 	}
 
 	render( ) {
