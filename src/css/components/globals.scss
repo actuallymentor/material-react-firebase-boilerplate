@@ -1,12 +1,13 @@
 // Globals
 * {
-	max-width: 100%;
+	// Set sizing to include element padding
 	box-sizing: border-box;
 }
 h1, h2, h3 {
 	text-transform: capitalize;
 }
 
+// General form styling
 form {
 	display: flex;
 	flex-direction: column;

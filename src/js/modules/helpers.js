@@ -1,3 +1,4 @@
+// Grab the values of a form from it's event object
 export const valuesFromEvent = event => {
 	let result = {}
 
@@ -7,4 +8,5 @@ export const valuesFromEvent = event => {
 	return result
 }
 
+// Placeholder
 export const other = true

@@ -1,10 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Link } from 'react-router-dom'
-import { store } from '../../redux/store'
+// import { store } from '../../redux/store'
 import { logoutUser } from '../../redux/action/userActions'
+import { connect } from 'react-redux'
 
-export default () => <nav id="sidebar" role='navigation'>
+// Navigation element
+// It uses an invisible input/label pair to manage CSS based drawer state
+const Navigation = ( { user, dispatch } ) => <nav id="sidebar" role='navigation'>
 
 		<input id='togglemenu' type='checkbox' hidden />
 		<div id='toggle'>
@@ -18,7 +21,9 @@ export default () => <nav id="sidebar" role='navigation'>
 
 		<div id="panel">
 			<Link id='homelink' to='/'>Home</Link>
-			<a href="#" onClick={ f => store.dispatch( logoutUser() ) } >Log Out</a>
+			{ user && <a href="#" onClick={ f => dispatch( logoutUser() ) } >Log Out</a> }
 		</div>
 
 </nav>
+
+export default connect( store => ( { user: store.user ? true : false } ) )( Navigation )

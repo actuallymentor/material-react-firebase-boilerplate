@@ -16,9 +16,13 @@ class App extends React.Component {
 	render( ) {
 		return (
 
+			// Connect redux store
 			<Provider store={ store } >
+				{ /* Redux store persistence across reloads and visits */ }
 				<PersistGate loading={null} persistor={ persistor }>
+					{ /* Connect router */ }
 					<Router history={ History }>
+						{ /* Load the Routes component, which renders the relevant screens at the relevant times */ }
 						<Routes />
 					</Router>
 				</PersistGate>
@@ -28,5 +32,5 @@ class App extends React.Component {
 	}
 }
 
-
-ReactDOM.render( <App />, document.getElementById('container') )
+// Init app when html loaded
+window.onload = f => ReactDOM.render( <App />, document.getElementById('container') )

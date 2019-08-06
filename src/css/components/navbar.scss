@@ -8,18 +8,25 @@ nav#sidebar {
 	top: 0;
 	right: 0;
 
+	// The toggle icon
 	#toggle {
 		position: relative;
 		z-index: 2;
+		padding: 1rem;
+
+		// The clickable element the triggers the input:checked;
 		label {
 			z-index: 3;
 			position: absolute;
 		    padding: 1rem;
 		    opacity: 0;
 		}
-		padding: 1rem;
+		
+
+		// The hamburger element, generated using css only
 		#hamburger {
 			width: $burger-size;
+			// The hamburger 'stripes'
 			div {
 				border: 1px solid $divider-color;
 			    width: 100%;
@@ -29,7 +36,7 @@ nav#sidebar {
 		}
 	}
 
-	// Put menu out of screen
+	// The menu panel
 	#panel {
 		transition-duration: .3s;
 
@@ -37,16 +44,16 @@ nav#sidebar {
 		z-index: 1;
 		position: absolute;
 		top: 0;
-		right: -$bar-width;
+		right: -$bar-width; // Put menu out of screen
 
-		// Styling
+		// Styling of the panel
 		width: $bar-width;
 		height: 100vh;
+		padding: 2rem 0;
 		background: $accent-color;
 		box-shadow: $hover-shadow;
 
-		// Items
-	    padding: 2rem 0;
+		// Items in the menu
 	    a {
 	    	color: white;
 	    	text-align: center;
@@ -57,11 +64,15 @@ nav#sidebar {
 	    }
 	}
 
+	// What to do once the menu is open
 	input:checked {
+
+		// Move the panel into the screen
 		& ~ #panel {
 			max-width: $bar-width;
 			right: 0;
 		}
+		// Toggle a visual change in the hamburger
 		& ~ #toggle #hamburger {
 			div {
 				border: 1px solid white;

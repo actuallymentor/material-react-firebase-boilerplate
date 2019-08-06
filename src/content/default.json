@@ -1,4 +1,5 @@
 {
 	"slug": "/",
-	"lang": "en"
+	"lang": "en",
+	"loading": "Loading app..."
 }

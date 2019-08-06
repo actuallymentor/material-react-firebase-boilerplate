@@ -15,7 +15,10 @@ import NavBar from './components/stateless/navbar'
 
 class RouteMan extends React.Component {
 
-	// When the state and/or history update
+	///////////////////////////////////////////////////
+	// Redirect rules
+	// Triggered when the state and/or history update
+	///////////////////////////////////////////////////
 	componentDidUpdate( ) {
 
 		// Get user status, current path and push function
@@ -31,7 +34,11 @@ class RouteMan extends React.Component {
 	render( ) {
 
 		return <div id="app">
+
+			{ /* Menu is always shown, regardless of route */ }
 			<NavBar />
+
+			{ /* These are the routes configured in the app */ }
 			<Switch>
 				<Route exact path='/'>
 						<Redirect push to='/login' />
@@ -46,9 +53,11 @@ class RouteMan extends React.Component {
 
 }
 
+// To give the Routeman access to redux and the routing history etc we connect it to both
 export const Routes = withRouter( connect( store => ( {
 	user: store.user ? true : false
 } ) )( RouteMan ) )
 
-
+// Create and export history object
+// Using hash type ( /#/ ) so that we don't need server-side config to prevent 404s
 export const History = createHashHistory()
