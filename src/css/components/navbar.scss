@@ -44,7 +44,7 @@ nav#sidebar {
 		z-index: 1;
 		position: absolute;
 		top: 0;
-		right: -$bar-width; // Put menu out of screen
+		right: -$bar-width * 1.1; // Put menu out of screen
 
 		// Styling of the panel
 		width: $bar-width;
