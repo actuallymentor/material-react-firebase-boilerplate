@@ -45,10 +45,6 @@ head
 	//- Get the webpack script
 	script( src=site.system.url + `assets/js/app-${site.system.timestamp}.js`, async)
 
-	//- materialize scripts
-	script( src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js", async )
-
-
 	//- Load the main css stylesheet and fonts if there is js support
 	script( type="application/javascript" ).
 		const loadAsync = async ( url, mime ) => {
