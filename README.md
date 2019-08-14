@@ -2,6 +2,10 @@
 
 This repo is modeled of my speed-optimized [Webpack based frontend boilerplate]( https://github.com/actuallymentor/webpack-frontend-only )
 
+Requirements:
+
+- A `firebase.js` in the root folder with firebase credentials
+
 This repo sets up a development environment where you can happily edit your .pug, .scss and .js files while your development server automatically updates when you save.
 
 The main optimisations are a high page speed score and built-in SEO structure. The only reason the page scored 99/100 page speed is because Google Analytics doesn't leverage browser caching sufficiently.
