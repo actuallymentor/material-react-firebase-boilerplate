@@ -8,24 +8,28 @@ nav#sidebar {
 	top: 0;
 	right: 0;
 
+	// The closing toggle
+	#closecapture {
+		// Positioning
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 1;
+		height: 100vh;
+		width: 100vw;
+	}
+
 	// The toggle icon
 	#toggle {
 		position: relative;
-		z-index: 2;
+		z-index: 3;
 		padding: 1rem;
-
-		// The clickable element the triggers the input:checked;
-		label {
-			z-index: 3;
-			position: absolute;
-		    padding: 1rem;
-		    opacity: 0;
-		}
 		
 
 		// The hamburger element, generated using css only
 		#hamburger {
 			width: $burger-size;
+			cursor: pointer;
 			// The hamburger 'stripes'
 			div {
 				border: 1px solid $divider-color;
@@ -33,7 +37,15 @@ nav#sidebar {
 			    display: block;
 			    margin-top: 8px;
 			}
+			// When open...
+			&.open {
+				div {
+					border: 1px solid white;
+				}
+			}
 		}
+
+
 	}
 
 	// The menu panel
@@ -41,7 +53,7 @@ nav#sidebar {
 		transition-duration: .3s;
 
 		// Position
-		z-index: 1;
+		z-index: 2;
 		position: absolute;
 		top: 0;
 		right: -$bar-width * 1.1; // Put menu out of screen
@@ -62,22 +74,13 @@ nav#sidebar {
 		    text-decoration: none;
 		    padding: 1rem 0;
 	    }
-	}
 
-	// What to do once the menu is open
-	input:checked {
-
-		// Move the panel into the screen
-		& ~ #panel {
+	    // When open...
+	    &.open {
+	    	// Move the panel into the screen
 			max-width: $bar-width;
 			right: 0;
-		}
-		// Toggle a visual change in the hamburger
-		& ~ #toggle #hamburger {
-			div {
-				border: 1px solid white;
-			}
-		}
+	    }
 	}
 
 }

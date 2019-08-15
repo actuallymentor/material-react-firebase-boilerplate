@@ -8,7 +8,7 @@ import { valuesFromEvent } from '../../modules/helpers'
 
 // Data actions
 import { getUser, registerUser, loginUser, logoutUser } from '../../redux/action/userActions'
-import setLoading from '../../redux/action/loadingActions'
+import { setLoading } from '../../redux/action/loadingActions'
 
 class LoginRegister extends Component {
 

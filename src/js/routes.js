@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 
 // Visual
 import LoginRegister from './components/stateful/login-register'
-import NavBar from './components/stateless/navbar'
+import NavBar from './components/stateful/navbar'
 import { Loading } from './components/stateless/generic'
 
 class RouteMan extends React.Component {
