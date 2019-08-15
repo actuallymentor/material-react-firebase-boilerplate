@@ -45,9 +45,9 @@ class NavMan extends Component {
 			</div>
 
 			<div id="panel" className={ open && 'open' || '' }>
-				<Link id='homelink' to='/'>Home</Link>
+				<Link onClick={ this.toggle } id='homelink' to='/'>Home</Link>
 				<a href="#" onClick={ f => dispatch( panicReload( ) ) } >Panic button</a>
-				{ user && <a href="#" onClick={ f => dispatch( logoutUser() ) } >Log Out</a> }
+				{ user && <a href="#" onClick={ f => dispatch( logoutUser() ).then( this.toggle ) } >Log Out</a> }
 			</div>
 
 			{ open && <div onClick={ this.toggle } id='closecapture'></div> }
