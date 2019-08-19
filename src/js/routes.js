@@ -13,6 +13,7 @@ import { connect } from 'react-redux'
 import LoginRegister from './components/stateful/login-register'
 import NavBar from './components/stateful/navbar'
 import { Loading } from './components/stateless/generic'
+import ActionButton from './components/stateful/action-button'
 
 class RouteMan extends React.Component {
 
@@ -40,9 +41,12 @@ class RouteMan extends React.Component {
 
 	render( ) {
 
-		const { loadingMessage } = this.props
+		const { loadingMessage, user } = this.props
 
 		return <div id="app">
+
+			{ /* If user logged in, show action button */ }
+			{ user && <ActionButton /> }
 
 			{ /* Menu is always shown, regardless of route */ }
 			<NavBar />

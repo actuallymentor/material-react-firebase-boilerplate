@@ -1,6 +1,13 @@
 // Globals
 body {
 	padding: 1rem;
+	#app {
+		max-width: 100%;
+	}
+	a {
+		// for hrefless a's
+		cursor: pointer;
+	}
 }
 * {
 	// Set sizing to include element padding
