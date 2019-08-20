@@ -1,3 +1,5 @@
+import { SHA3 } from 'sha3'
+
 // Grab the values of a form from it's event object
 export const valuesFromEvent = event => {
 
@@ -31,3 +33,8 @@ export const msTimestampToYYYMMDD = ms => {
 	return `${ d.year }-${ d.month.length < 2 ? '0' + d.month : d.month }-${ d.day.length < 2 ? '0' + d.day : d.day }`
 }
 export const timeStamp = f => new Date( ).getTime()
+
+// Hashing, hash string or make random hash based on time & randomness
+export const hash = source => new SHA3( 512 )
+.update( source || String( Math.random() + new Date().getTime() ) )
+.digest( 'hex' )
