@@ -3,8 +3,8 @@ import { SHA3 } from 'sha3'
 // Grab the values of a form from it's event object
 export const valuesFromEvent = event => {
 
-	//
-	if( event.target.value ) return event.target.value
+	// If it is a single element
+	if( event.target.nodeName == 'INPUT' ) return event.target.value
 
 	// If it is a form (target has multiple elements)
 	let result = {}
