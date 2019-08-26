@@ -3,13 +3,13 @@ import { SHA3 } from 'sha3'
 // Grab the values of a form from it's event object
 export const valuesFromEvent = event => {
 
-	// If it is a single element
-	if( event.target.nodeName == 'INPUT' ) return event.target.value
+	// if it is a single element
+	if( event.target.nodeName == 'INPUT' ) return event.target.type == 'checkbox' ? event.target.checked : event.target.value
 
 	// If it is a form (target has multiple elements)
 	let result = {}
 	for( let element of event.target ) {
-		if( element.value ) result[ element.name ] = element.value
+		if( element.value || element.checked ) result[ element.name ] = element.type == 'checkbox' ? element.checked : element.value
 
 		// if input type is file, return file, not value
 		if( element.type == 'file' ) result[ element.name ] = element.files.length <= 1 ? element.files[0] : element.files
