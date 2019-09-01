@@ -24,19 +24,25 @@ class RouteMan extends React.Component {
 	// Triggered when the state and/or history update
 	///////////////////////////////////////////////////
 
-	componentWillReceiveProps( nextProps ) {
-		// Redux
-		const { dispatch } = nextProps
-
+	shouldComponentUpdate( nextProps, nextState ) {
 
 		// Get user status, current path and push function
 		const { user, history: { push }, location: { pathname: path } } = nextProps
 
 		// User is logged in, but at login page
-		if( [ '/', '/login' ].includes( path ) && user ) push( '/profile' )
+		if( [ '/', '/login' ].includes( path ) && user ) {
+			push( '/profile' )
+			return true
+		}
 
 		// User is not logged in
-		if( path != '/login' && !user ) push( '/login' )
+		if( path != '/login' && !user ) {
+			push( '/login' )
+			return true
+		}
+
+		// Component update must return true/false
+		return false
 	}
 
 	render( ) {
