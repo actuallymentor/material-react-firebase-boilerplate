@@ -27,11 +27,12 @@ class RouteMan extends React.Component {
 	shouldComponentUpdate( nextProps, nextState ) {
 
 		// Get user status, current path and push function
-		const { user, history: { push }, location: { pathname: path } } = nextProps
+		const { user, loadingMessage, history: { push }, location: { pathname: path } } = nextProps
+		const { oldUser, oldLoadingMessage } = this.props
 
 		// User is logged in, but at login page
 		if( [ '/', '/login' ].includes( path ) && user ) {
-			push( '/profile' )
+			push( '/cloaks' )
 			return true
 		}
 
@@ -42,7 +43,7 @@ class RouteMan extends React.Component {
 		}
 
 		// Component update must return true/false
-		return false
+		return ( user != oldUser || loadingMessage != oldLoadingMessage )
 	}
 
 	render( ) {
