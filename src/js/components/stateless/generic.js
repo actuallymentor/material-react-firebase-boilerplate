@@ -12,7 +12,9 @@ export class Component extends React.Component {
     this.promiseState = newState => new Promise( resolve => this.setState( newState, resolve ) )
     // A helper to update the state without replacing it
     this.updateState = updates => this.promiseState( { ...this.state, ...updates } )
-
+    // Binding
+    this.binder = functionToBind => this[ functionToBind.name ] = functionToBind.bind( this )
+    
   }
 
 }
