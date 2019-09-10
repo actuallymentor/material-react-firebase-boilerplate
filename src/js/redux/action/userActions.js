@@ -18,5 +18,8 @@ export const loginUser = ( email, password ) => ( {
 
 export const logoutUser = f => ( {
 	type: 'LOGOUTUSER',
-	payload: app.logoutUser().finally( f => persistor.purge() )
+	payload: app.logoutUser().finally( f => {
+		persistor.purge()
+		window.location = '/'
+	} )
 } )

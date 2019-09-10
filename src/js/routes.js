@@ -32,7 +32,7 @@ class RouteMan extends React.Component {
 
 		// User is logged in, but at login page
 		if( [ '/', '/login' ].includes( path ) && user ) {
-			push( '/cloaks' )
+			push( '/profile' )
 			return true
 		}
 
