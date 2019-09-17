@@ -3,4 +3,7 @@ doctype html
 html( lang=content.lang )
 	include pug/_header.pug
 	body
-		div#container= content.loading
+		div#container
+			div#loading
+				div.lds-dual-ring
+				div#message= content.loading
