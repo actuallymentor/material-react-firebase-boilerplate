@@ -27,6 +27,7 @@ let thebs
 const servername = 'bsserver'
 const bsconfig = {
   host: 'localhost',
+  https: true,
   open: true,
   port: 3000,
   server: { 
