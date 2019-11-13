@@ -15,6 +15,19 @@ const { css } = require( __dirname + '/modules/publish-css' )
 // Site config 
 const site = require( __dirname + '/modules/config' )
 
+// PWA
+const { InjectManifest } = require( 'workbox-webpack-plugin' )
+const PWA = f => new InjectManifest( {
+  swSrc: `${ site.system.source }/js/service-worker.js`,
+  // Output dir is relative to webpack output
+  swDest: '../../service-worker.js',
+  // Where to put the aut-generated assets relative to webpack dir
+  importsDirectory: '../../',
+  // Cache non-webpack files
+  globDirectory: `${ site.system.public }`,
+  globPatterns: [ '**/*.{js,json,png,jpg,gif,html,css}' ]
+} )
+
 // Conversions
 const publishpug = require( __dirname + '/modules/publish-pug' )
 const publishassets = require( __dirname + '/modules/publish-assets' )
@@ -27,7 +40,6 @@ let thebs
 const servername = 'bsserver'
 const bsconfig = {
   host: 'localhost',
-  https: true,
   open: true,
   port: 3000,
   server: { 
@@ -107,7 +119,7 @@ module.exports = ( ) => {
         ]
       },
       devtool: process.env.NODE_ENV == 'production' ?  'cheap-module-source-map' : 'eval',
-      plugins: [ process.env.NODE_ENV == 'production' ? new webpack.DefinePlugin( envconfig ) : new BrowserSyncPlugin( bsconfig, bsyncplugconfig ) ]
+      plugins: [ PWA(), process.env.NODE_ENV == 'production' ? new webpack.DefinePlugin( envconfig ) : new BrowserSyncPlugin( bsconfig, bsyncplugconfig ) ]
     }
   } ).catch( console.log.bind( console ) )
 }

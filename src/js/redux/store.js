@@ -43,9 +43,11 @@ export const persistor = persistStore( store )
 // Worst case error handling
 window.addEventListener( 'unhandledrejection', event => {
 	console.log( event )
-	alert( `Error: ${ event.reason.message }. The app will now reload.` )
-	persistor.purge()
-	location.href = '/'
+	if( confirm( `Error: ${ event.reason.message }. Reload app?` ) ) {
+		persistor.purge()
+		location.href = '/'
+	}
+	
 } )
 
 // Have a persistor purge query option

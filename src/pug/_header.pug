@@ -47,6 +47,8 @@ head
 
 	//- Load the main css stylesheet and fonts if there is js support
 	script( type="application/javascript" ).
+
+		// Async loader function
 		const loadAsync = async ( url, mime ) => {
 			let link = document.createElement( "link" )
 			link.href = url
@@ -54,5 +56,10 @@ head
 			link.rel = "stylesheet"
 			return document.getElementsByTagName( "head" )[0].appendChild( link )
 		}
+
+		// load css and fonts
 		loadAsync( "#{ site.system.url + 'assets/css/styles.css' }", "text/css" )
 		loadAsync( "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700", "" )
+
+		// Service worker import
+		if ( 'serviceWorker' in navigator )  window.addEventListener('load', () =>  navigator.serviceWorker.register( '/service-worker.js' ) )

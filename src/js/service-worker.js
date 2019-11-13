@@ -1,0 +1,1 @@
+console.log( 'Mentor registered a SW', self.__precacheManifest )
