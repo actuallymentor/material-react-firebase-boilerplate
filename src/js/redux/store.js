@@ -33,7 +33,7 @@ const metaReducer = ( state, action ) => {
 const persistedReducer = persistReducer( { key: 'root', storage }, metaReducer )
 
 // Middleware
-const middleware = applyMiddleware( logger, promise )
+const middleware = process.env.NODE_ENV == 'development' ? applyMiddleware( logger, promise ) : applyMiddleware( promise )
 
 
 // Export store and persistor
