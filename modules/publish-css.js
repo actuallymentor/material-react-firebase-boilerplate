@@ -9,7 +9,7 @@ const cssnano = require( 'cssnano' )
 const file = site => new Promise( ( resolve, reject ) => { 
 
 	const css = { 
-		from: `${site.system.source}css/styles.scss`,
+		from: `${site.system.source}css/styles.sass`,
 		to: `${site.system.public}assets/css/styles.css`
 	 }
 
