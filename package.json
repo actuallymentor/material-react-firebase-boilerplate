@@ -36,7 +36,6 @@
     "del": "^5.1.0",
     "dotenv": "^8.2.0",
     "firebase": "^7.7.0",
-    "fsevents": "^2.1.2",
     "html-minifier": "^4.0.0",
     "ip": "^1.1.5",
     "mkdirp": "^0.5.1",
@@ -56,5 +55,8 @@
     "sitemap": "^5.1.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.1.2"
   }
 }
