@@ -5,6 +5,7 @@ This repo is modeled of my speed-optimized [Webpack based frontend boilerplate](
 Requirements:
 
 - A `firebase.js` in the root folder with firebase credentials
+- [nvm]( https://github.com/nvm-sh/nvm ) installed on your system at `~/.nvm`
 
 This repo sets up a development environment where you can happily edit your .pug, .scss and .js files while your development server automatically updates when you save.
 
