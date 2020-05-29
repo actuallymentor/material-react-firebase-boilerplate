@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=development webpack -d --progress --watch",
+    "start": "source ~/.nvm/nvm.sh && nvm use && NODE_ENV=development webpack -d --progress --watch",
     "build": "NODE_ENV=production webpack -p --progress"
   },
   "repository": {
