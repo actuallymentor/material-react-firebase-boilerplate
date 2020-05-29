@@ -10,7 +10,7 @@ This repo sets up a development environment where you can happily edit your .pug
 
 The main optimisations are a high page speed score and built-in SEO structure. The only reason the page scored 99/100 page speed is because Google Analytics doesn't leverage browser caching sufficiently.
 
-Workflow:
+## Workflow
 
 1. Make html structure using [ pug ]( https://github.com/pugjs )
 2. Write styling in [ Sass ]( https://github.com/sass/sass )
@@ -19,10 +19,22 @@ Workflow:
 3. Write modern js compiled by [ Webpack ]( https://github.com/webpack )
 4. Have an auto-refreshing browser preview using [ Browsersync ]( https://github.com/BrowserSync/browser-sync )
 
-React workflow:
+## React workflow
 
 1. React is hooked up with Redux, redux persist and react router
 2. The firebase connector is in the `modules` folder
+
+## No firebase workflow
+
+You will need to remove the firebase references in:
+
+1. `src/components/stateful/login-register`
+2. `src/components/stateful/navbar`
+
+Alternatively remove these from `src/routes.js`:
+
+1. `import LoginRegister from './components/stateful/login-register'`
+2. `import NavBar from './components/stateful/navbar'`
 
 
 ## Getting started
